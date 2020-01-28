@@ -2,68 +2,108 @@
 <html>
 
 <head>
+    <title>Регистрација</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!---------------------mesto na ziveenje------------------>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="includes/countrystate.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
-<title>Sign Up</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-
-<style>
+    <style>
     h1 {
-  font-size: 20px;
-  margin-top: 24px;
-  margin-bottom: 24px;
-}
-</style>
+        font-size: 20px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+    </style>
 
 </head>
-  <body>
 
-  <div class="container">
+<body>
+    <div class="col-md-6 offset-md-3 mt-5">
+        <form action="insert_user.php" method="post">
+            <div class="form-group">
+                <label for="exampleInputName">Име</label>
+                <input type="text" name="ime" class="form-control" id="exampleInputName"
+                    placeholder="Внесете го Вашето име" required="required">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Презиме</label>
+                <input type="text" name="prezime" class="form-control" id="exampleInputLastName"
+                    placeholder="Внесете го Вашето презиме" required="required">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Корисничко име</label>
+                <input type="text" name="username" class="form-control" id="exampleInputUserName"
+                    placeholder="Креирајте корисничко име" required="required">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" required="required">Е-пошта</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Внесете ја Вашата електронска пошта">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" required="required">Лозинка</label>
+                <div class="row">
+                    <div class="col-8">
+                        <input type="password" name="pass" class="form-control" id="myInput"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="col-4">
+                        <input type="checkbox" onclick="Lozinka()">Прикажи лозинка
+                        <script>
+                        function Lozinka() {
+                            var x = document.getElementById("myInput");
+                            if (x.type === "password") {
+                                x.type = "text";
+                            } else {
+                                x.type = "password";
+                            }
+                        }
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" required="required">Телефонски број</label>
+                <input type="tel" id="phone" class="form-control" name="phone" pattern="(07)\d-[0-9]{3}-[0-9]{3}"
+                    required="required" placeholder="Внесете го Вашиот телефонски број">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Место на живеење</label>
+                <div class="row">
+                    <div class="col-6">
+                        <select class="form-control countries order-alpha presel-byip" id="countryId" name="country"
+                            required="required">
+                            <option value="">Држава</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <select class="form-control states order-alpha" id="stateId" name="state" required="required">
+                            <option value="">Општина</option>
+                        </select>
+                    </div>
+                </div>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Опис </label>
+                <textarea name="opis" class="col-12" rows="3"
+                    placeholder="Внесете краток опис (незадолжително)"></textarea>
+            </div>
+            <div class="form-group">
+                <a style="text-decoration: none;float: right;color: #187FAB;" data-toggle="tooltip" title="Signin"
+                    href="signin.php">Веќе имате профил? Логирајте се.</a><br><br>
+                <button id="signup" name="sign_up" type="submit" class="btn btn-primary">Регистрирај се</button>
 
-  <div class="menu">
-
-    </div>
-
-
-     <div class="col-md-6 offset-md-3 mt-5">
-        
-        <form accept-charset="UTF-8" action="https://getform.io/f/d709b72b-d30b-4316-9cc1-4d1d33778a8b" method="POST" enctype="multipart/form-data" target="_blank">
-          
-          <div class="form-group">
-            <label for="exampleInputName">Name</label>
-            <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter your name" required="required">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputName">Last Name</label>
-            <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter your last name" required="required">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1" required="required">Email address</label>
-            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-          </div>
-
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Favourite Platform</label>
-            <select class="form-control" id="exampleFormControlSelect1" name="platform" required="required">
-              <option>Github</option>
-              <option>Gitlab</option>
-              <option>Bitbucket</option>
-            </select>
-          </div>
-          <hr>
-          <div class="form-group mt-3">
-            <label class="mr-2">Upload your profile picture:</label>
-            <input type="file" name="file">
-          </div>
-          <hr>
-          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-        </div>
-  </body>
+    </div>
+</body>
+
 </html>
