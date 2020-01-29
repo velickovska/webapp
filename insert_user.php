@@ -8,12 +8,15 @@
 </html>
 
 <?php
+
+
 include("includes/connection.php");
+
 
 if(isset($_POST["sign_up"]))  
 {
-    $ime =$_POST["ime"];
-    $prezime =$_POST["prezime"] ;
+    $ime =  $_POST["ime"];
+    $prezime =  $_POST["prezime"];
     $username = $_POST["username"];
     $email = $_POST["email"]  ;
     $tel_br = $_POST["phone"]  ;
@@ -21,7 +24,7 @@ if(isset($_POST["sign_up"]))
     $grad =  $_POST["state"]  ;
     $posts = "no";
     $password = $_POST["pass"]  ;
-    $opis = $_POST["opis"]  ;
+    $opis =  $_POST["opis"];
     
 
     if(strlen($password) < 8)
@@ -35,9 +38,21 @@ if(isset($_POST["sign_up"]))
     $check = mysqli_num_rows($run_email);
     if($check == 1)
     {
-        echo"<script charset=\"utf-8\"> alert('Е-поштата веќе постои, Ве молиме обидете се повторно'); history.back();</script>";
+        echo"<script charset=\"utf-8\"> alert('Е-поштата веќе постои. \nВе молиме обидете се повторно'); history.back();</script>";
+        exit();
         
     }
+
+    $check_user = "select * from user where username='$username'";
+    $run_user = mysqli_query($conn, $check_user);
+    $check2 = mysqli_num_rows($run_user);
+    if($check2 == 1)
+    {
+        echo"<script charset=\"utf-8\"> alert('Корисничкото име веќе постои. \nВе молиме обидете се повторно'); history.back();</script>";
+        exit();
+        
+    }
+
     $rand = rand(1, 5);
     $profilna = "images/user" . $rand . ".png";
 
@@ -48,17 +63,20 @@ if(isset($_POST["sign_up"]))
 
     $insert = "insert into user (ime, prezime, username, password, email, telbr, grad, drzava, profile_pic, opis, posts) 
     values ('$ime', '$prezime', '$username','$token', '$email','$tel_br','$grad','$drzava','$profilna','$opis','$posts')";
-    $query = mysqli_query($conn, $insert);
+    //$query = mysqli_query($conn, $insert);
 
-    if($query)
+    if (!mysqli_query($conn, $insert)) 
     {
-        echo"<script charset=\"utf-8\"> alert('Успешна регистрација!')</script>";
-        echo"<script charset=\"utf-8\"> window.open('signin.html','_self')</script>";
+    
+   echo"<script charset=\"utf-8\"> alert('Неуспешна регистрација.\n Ве молиме обидете се повторно.'); history.back();</script>";
+        
         
     }
     else
     {
-        echo"<script charset=\"utf-8\"> alert('Неуспешна регистрација.\n Ве молиме обидете се повторно.'); history.back();</script>";
+        
+        echo"<script charset=\"utf-8\"> alert('Успешна регистрација!')</script>";
+        echo"<script charset=\"utf-8\"> window.open('signin.html','_self')</script>";
         
         
     }
