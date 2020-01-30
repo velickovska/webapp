@@ -25,26 +25,50 @@
          <form accept-charset="UTF-8" action="insert_user.php" method="POST" enctype="multipart/form-data" target="_blank">
                  <div class="form-group">
                         <label>На вдомување се дава:</label>
-                            <select class="form-control input-md" name="zivotno" required="required" id="zivotno">
+                            <select class="form-control input-md" name="zivotno" required="required" id="zivotno" >
                                 
-                                <option value="kuce">Куче</option>
                                 <option value="mace">Маче</option>
+                                <option value="kuce">Куче</option>
+                             
+                            </select>
+                            </div>
+
+                            <div class="form-group" style="display: none;">
+                            <label id="element">Раст</label>
+                            <select class="form-control input-md" name="pol" required="required" id="rast">
+                                <option value="mal">Мал</option>
+                                <option value="sreden">Среден</option>
+                                <option value="golem">Голем</option>
                                 
                             </select>
+                            </div>
+                            
                             <script>
                             
-var sel = document.getElementById('zivotno');
-document.getElementById('zivotno').onclick = function() {
-  var opts = sel.options;
-  for (var opt, j = 0; opt = opts[j]; j++) {
-    if (opt.value == val) {
-      sel.selectedIndex = j;
-      break;
+                            const selects = document.querySelectorAll("select");
+const [zivotno, rast] = selects;
+const element = document.getElementById("element");
+
+function handleSelectInput() {
+  debugger;
+  if (this.id === "zivotno") {
+    if (this.value = "kuce") {
+      rast.parentElement.style.display = "block";
+    }
+  } else {
+    if (this.value === "mace") {
+      element.style.display = "none";
+      rast.style.display = "none";
     }
   }
 }
+
+selects.forEach(select => select.addEventListener("input", handleSelectInput));
+                            
+                        
+                        
                             </script>
-                </div>
+                
                 <div class="form-group">
                         <label>Пол</label>
                             <select class="form-control input-md" name="pol" required="required" >
@@ -90,7 +114,7 @@ document.getElementById('zivotno').onclick = function() {
             <hr>
             <div class="form-group">
                <label for="exampleInputName">Опис </label>
-               <textarea name="opis" class="col-12" rows="3" placeholder="Внесете краток опис"
+               <textarea name="opis" class="col-12" rows="3" placeholder="Внесете краток опис за животното"
                   required="required"></textarea>
             </div>
             <button name="post" type="submit" class="btn btn-primary">Креирај оглас</button>

@@ -18,3 +18,10 @@
 .Lofoten-&-Senja,-Norway-(02/2019)-3-hsla { color: hsla(157, 21, 36, 1); }
 .Lofoten-&-Senja,-Norway-(02/2019)-4-hsla { color: hsla(146, 24, 44, 1); }
 .Lofoten-&-Senja,-Norway-(02/2019)-5-hsla { color: hsla(95, 29, 50, 1); }
+
+
+#67f494 	(103,244,148)
+#5cc59e 	(92,197,158)
+#4c5267 	(76,82,103)
+#363a51 	(54,58,81)
+#1a2b42 	(26,43,66)
