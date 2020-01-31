@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 30, 2020 at 01:24 PM
+-- Generation Time: Jan 31, 2020 at 10:52 PM
 -- Server version: 5.6.13
 -- PHP Version: 5.4.17
 
@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `kuce` (
   `vozrast` set('0','1','2','3') NOT NULL,
   `user_username` varchar(15) NOT NULL,
   `slika` varchar(255) NOT NULL,
+  `opis` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -58,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `mace` (
   `opstina` varchar(255) NOT NULL,
   `drzava` varchar(255) NOT NULL,
   `slika` varchar(255) NOT NULL,
+  `opis` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -82,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `posts` text NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `user`
@@ -91,7 +93,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`ID`, `ime`, `prezime`, `username`, `password`, `email`, `telbr`, `grad`, `drzava`, `profile_pic`, `opis`, `posts`) VALUES
 (12, 'Marija', 'Nikolovska', 'marija', '420918fae6a1e8449399e3c932a66337', 'maya_nikolovska@yahoo.com', '078-985-874', 'Debar', 'Macedonia', 'images/user2.png', '', 'no'),
 (30, 'Маја', 'Николовска', 'roo2t', '50dfca8d83abe12a56a8eb46cf01454a', 'majahjhhj879@student.ugd.edu.mk', '078-986-985', 'Caska Municipality', 'Macedonia', 'images/user3.png', 'опис', 'no'),
-(35, 'Марија', 'Николовска', 'marija152', '48df07a950ebec3b815c8c1c639afff6', 'maja.@student.ugd.edu.mk', '078-968-854', 'Cesinovo-Oblesevo', 'Macedonia', 'images/user3.png', '', 'no');
+(35, 'Марија', 'Николовска', 'marija152', '48df07a950ebec3b815c8c1c639afff6', 'maja.@student.ugd.edu.mk', '078-968-854', 'Cesinovo-Oblesevo', 'Macedonia', 'images/user3.png', '', 'no'),
+(36, 'Maja', 'Николовска', 'test', '420918fae6a1e8449399e3c932a66337', 'bbb@gmail.com', '078-985-968', 'Stip', 'Macedonia', 'images/user1.png', 'долг опис ', 'no'),
+(37, 'Maja', 'Николовска', 'test2', '6b7e5e2a95794751a7c998f83b7d1e1f', 'bbb2@gmail.com', '078-985-968', 'Centar Zupa', 'Macedonia', 'images/user4.png', 'долг опис ', 'no');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

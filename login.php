@@ -45,7 +45,7 @@ if(isset($_POST['login']))
           $_SESSION['ime'] = $row["ime"];
           $_SESSION['prezime'] = $row["prezime"];
           
-          header("Location: main.php");
+          header("Location: header.php");
         }
         else
         {

@@ -21,7 +21,7 @@
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <a href="index.php" class="navbar-brand">Petscue</a>
+                        <a href="header.php" class="navbar-brand">Petscue</a>
                     </ul>
                     <span></span>
                     <?php
