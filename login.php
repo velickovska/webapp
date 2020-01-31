@@ -1,6 +1,17 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+</head>
+
+</html>
+
 <?php
-require_once "dbconfig.php";
-if(isset($_POST['submit']))
+
+
+include("includes/connection.php");
+if(isset($_POST['login']))
 {
 if(isset($_POST['username']) && isset($_POST['password']))
 {
@@ -11,8 +22,8 @@ if(isset($_POST['username']) && isset($_POST['password']))
   if(!$result) die ('You are not registered!');
   else {
   $row = mysql_fetch_row($result);
-  $salt1 = "gmh*!";
-  $salt2 = "op@&";
+  $salt1 = "ap3gmh*!";
+  $salt2 = "o_7p@&";
   $token = hash('ripemd128',"$salt1$pass$salt2");
 
   if($token == $row[4])
