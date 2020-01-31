@@ -30,7 +30,7 @@
         { 
           ?>
         <p class="lead">
-            За да можете да креирате оглас, <a href="login.php"> логирајте се.</a>
+            За да можете да креирате оглас, <a href="login.html"> логирајте се.</a>
         </p>
 
         <?php
@@ -40,8 +40,7 @@
         {
           ?>
 
-        <form accept-charset="UTF-8" action="insert_user.php" method="POST" enctype="multipart/form-data"
-            target="_blank">
+        <form accept-charset="UTF-8" action="kreiraj_oglas.php" method="POST">
             <div class="form-group">
                 <label>На вдомување се дава:</label>
                 <select class="form-control input-md" name="zivotno" required="required" id="zivotno">
@@ -52,7 +51,7 @@
 
             <div class="form-group" style="display: none;">
                 <label id="element">Раст</label>
-                <select class="form-control input-md" name="pol" required="required" id="rast">
+                <select class="form-control input-md" name="rast" required="required" id="rast">
                     <option value="mal">Мал</option>
                     <option value="sreden">Среден</option>
                     <option value="golem">Голем</option>
@@ -148,10 +147,10 @@
                 </div>
 
             </div>
-            <button name="oglas" type="submit" class="btn btn-primary">
+            <button name="oglas" type="submit" class="btn btn-outline-dark btn-lg">
                 Креирај оглас
             </button>
-        </form>
+        </form>S
 
         <?php
         }

@@ -76,7 +76,7 @@ if(isset($_POST["sign_up"]))
     {
         
         echo"<script charset=\"utf-8\"> alert('Успешна регистрација!')</script>";
-        echo"<script charset=\"utf-8\"> window.open('signin.html','_self')</script>";
+        echo"<script charset=\"utf-8\"> window.open('signin.php','_self')</script>";
         
         
     }
