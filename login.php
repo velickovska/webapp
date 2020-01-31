@@ -7,60 +7,43 @@
 
 </html>
 
+
 <?php
 
 
 include("includes/connection.php");
 if(isset($_POST['login']))
 {
+$name = $_POST['username'];
+$pass = $_POST['password'];
+$salt1 = "ap3gmh*!";
+$salt2 = "o_7p@&";
+$c_pass = hash('ripemd128',"$salt1$pass$salt2");
 
-  $user = $_POST['username'];
-  $pass = $_POST['password'];
+if (filter_var($name, FILTER_VALIDATE_EMAIL))
+{
 
-  $check_email = "select * from user where email='$user'";
-    $run_email = mysqli_query($conn, $check_email);
-    $check = mysqli_num_rows($run_email);
+$query = mysqli_query($conn,"SELECT * FROM `user` WHERE `email` = '$name' AND `password` = '$c_pass'");
+} 
+else 
+{
+$query = mysqli_query($conn,"SELECT * FROM `user` WHERE `username` = '$name' AND `password` = '$c_pass'");
+}
 
-  $check_user = "select * from user where username='$user'";
-    $run_user = mysqli_query($conn, $check_user);
-    $check2 = mysqli_num_rows($run_user);  
-
-  if($check2 == 0 &&  $check==0)
-    {
-      echo"<script charset=\"utf-8\"> alert('Не постои корисничкото име или е-пошта. 
-      \nВе молиме обидете се повторно.'); history.back();</script>";
-
-        
-    }
-  
-    else
-    {
-      
-      $salt1 = "ap3gmh*!";
-      $salt2 = "o_7p@&";
-      $token = hash('ripemd128',"$salt1$pass$salt2");
-        
-
-        if($check2==1)
-        $result = $run_user;
-        else
-        $result = $run_email;
-
-        $row = mysqli_fetch_assoc($result); 
-        if(($row["password"]) == $token)
-        {
-          session_start();
+if($query)
+{
+session_start();
           $_SESSION['user'] = $row["username"];
           $_SESSION['ime'] = $row["ime"];
           $_SESSION['prezime'] = $row["prezime"];
-          echo"<script charset=\"utf-8\"> alert('Успешна најава'); </script>";
+          
           header("Location: main.php");
-        }
-        else
-        {
-          echo"<script charset=\"utf-8\"> alert('Погрешна лозинка'); history.back();</script>";
-        }
-    }  
+} 
+else 
+{
+echo"<script charset=\"utf-8\"> alert('Погрешни информации'); history.back(); </script>";
+}
+
   }
 
   
