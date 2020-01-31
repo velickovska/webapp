@@ -56,8 +56,13 @@ if(isset($_POST['login']))
   
     else
     {
-      echo "<script charset=\"utf-8\"> alert('Не постои корисничкото име или е-пошта. 
-      \nВе молиме обидете се повторно.'); history.back();</script>";
+      
+      ?>
+<script charset="utf-8">
+alert("Не постои корисничкото име или е-пошта. \nВе молиме обидете се повторно.");
+history.back();
+</script>
+<?php
       
     }  
   }
