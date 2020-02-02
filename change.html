@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Промени информации</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+	<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+<?php session_start();
+        
+     $_SESSION['user']=$user;
+	 $query = "SELECT * FROM user WHERE username='$user'";
+  $result = mysqli_query($query);
+$row = mysqli_fetch_assoc($result);
+?>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+				<?php echo ' <class="image avatar"><img  src="data:image/jpeg;base64, '.base64_encode($row['profile_pic']).'"  ?><br><br><br>
+				<input type="file" name="profilna_slika"/>
+				<input type="submit" name="cslika" value="Промени"/><br><br>
+				
+				<?php 
+				$profilna=$_POST['profilna_slika'];
+				 if (isset($_POST['cslika') && isset($_POST['profilna_slika')){
+	   $sql1 = "INSERT INTO user( profile_pic )
+
+                                     VALUES ('$profilna')";
+
+$qry1 = mysqli_query($connect, $sql1);}?>
+				<h1><strong> Опис:<input type="text" name="opis1" placeholder="Внесете го Новиот опис"/><br /></h1>
+				<input type="submit" name="copis" value="Промени"/>
+				<?php 
+				$opis1=$_POST['opis1'];
+				 if (isset($_POST['opis1') && isset($_POST['copis')){
+	   $sql3 = "INSERT INTO user( opis)
+
+                                     VALUES ('$opis1')";
+
+$qry3 = mysqli_query($connect, $sql3);}?>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h2><?php echo $row['ime'] $row['prezime'] ?><br />
+							Корисничко име: <?php echo $row['username']?></h2>
+														  <p>Промени лозинка: <input type="password" name="pass1" />
+							  <input type="submit" name="cpass" value="Промени"/><br>
+							  
+					 <?php
+					  $pass1 = $_POST['pass1'];
+					  $salt1 = "ap3gmh*!";
+      $salt2 = "o_7p@&";
+      $token = hash('ripemd128',"$salt1$pass1$salt2");
+	  if (isset($_POST['pass1') && isset($_POST['cpass'])){
+	   $sql = "INSERT INTO user( password)
+                                     VALUES ('$token')";
+
+$qry = mysqli_query($connect, $sql);}?>
+						Промени град:<input type="text" name="grad1" placeholder="Внеси го новиот град"/>
+						<input type="submit" name="cgrad" value="Промени"/><br>
+						<?php
+					$grad1=$_POST['grad1'];
+					if (isset($_POST['grad1')&& isset ($_POST['cgrad')){
+						$sql2 = "INSERT INTO user( grad)
+
+                                     VALUES ('$grad1')";
+
+$qry2= mysqli_query($connect, $sql2);}?>
+						Промени држава:<input type="text" name="drzava1" placeholder="Внеси ја новата држава"/>
+						<input type="submit" name="cdrzava" value="Промени"/><br>
+					<?php
+					$drzava1=$_POST['drzava1'];
+					if (isset($_POST['cdrzava')&& isset ($_POST['drzava1')){
+						$sql4 = "INSERT INTO user( drzava )
+
+                                     VALUES ('$drzava1)";
+
+$qry2= mysqli_query($connect, $sql4);}?>
+						</header>
+					</section>
+					</form>
+
+				
+
+
+
+			</div>
+		
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
