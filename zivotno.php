@@ -210,9 +210,11 @@
         <div class="row">
             <div class="col-8 offset-2">
                 <br>
-                <form action="apliciraj.php" method="POST">
+                <form
+                    action="apliciraj.php?stuff=<?php echo $user_username; ?>&ID=<?php echo $zivotno_id; ?>&zivotno=<?php echo $zivotno;?>"
+                    method="POST">
                     <div class="form-group">
-                        <button class="btn-dark btn-lg btn" style="width:100%"> Аплицирај </button>
+                        <button class="btn-dark btn-lg btn" style="width:100%" name="apliciraj"> Аплицирај </button>
 
                     </div>
                     <div class="col-2">
