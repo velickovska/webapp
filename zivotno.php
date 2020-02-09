@@ -154,27 +154,95 @@
         </div>
 
 
-    </div>
 
 
-    <?php
+
+        <?php
            
         }
     }
 
+    if($vdomeno=="da")
+    {
+?>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <br>
+                <p class="lead"> Животното е успешно вдомено. </p>
+
+            </div>
+            <div class="col-2">
+            </div>
+
+        </div>
+        <?php
+    }
+    else
+    {
+
     
         if(!isset($_SESSION['user']) || empty($_SESSION['user']))
         {
+            ?>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <br>
+                <p class="lead"> За да можете да аплицирате за огласот, <a href="login.php">најавете се. </a> </p>
 
-        }
-        else if($user_username == $user)
-        {
+            </div>
+            <div class="col-2">
+            </div>
 
-        }
-        else
-        {
+        </div> <?php
+    }
+    else if($user_username == $user)
+    {
 
+    }
+    else
+    {
+        $sql = "SELECT * from zainteresirani where zainteresiran_ID='$user' AND zivotno_ID='$zivotno_id' AND zivotno='$zivotno'";
+        if ($result = mysqli_query($conn, $sql)) {
+                $br = mysqli_num_rows($result);
+                if($br==0)
+                {
+?>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <br>
+                <form action="apliciraj.php" method="POST">
+                    <div class="form-group">
+                        <button class="btn-dark btn-lg btn" style="width:100%"> Аплицирај </button>
+
+                    </div>
+                    <div class="col-2">
+                    </div>
+
+            </div>
+            <?php
+    }
+else
+{
+?>
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <br>
+                    <p class="lead"> Веќе имате аплицирано. </p>
+
+                </div>
+                <div class="col-2">
+                </div>
+
+            </div>
+
+            <?php
+}
         }
-        ?> </body>
+    }
+}
+    ?>
+
+
+</body>
 
 </html>
