@@ -11,28 +11,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    <style>
-    h1 {
-        font-size: 20px;
-        margin-top: 24px;
-        margin-bottom: 24px;
-    }
-    </style>
+
 </head>
 
 <body>
     <?php 
         include("includes/header.php");
+        include("includes/connection.php");
         
         ?>
     <br>
     <div class="container">
 
-        <form accept-charset="UTF-8" action="kreiraj_oglas.php" method="POST" enctype="multipart/form-data">
+        <form accept-charset="UTF-8" action="" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-4">
                     <select class="form-control input-md" name="zivotno" required="required" id="zivotno">
-                        <option value="/">Животно</option>
+
                         <option value="mace">Маче</option>
                         <option value="kuce">Куче</option>
                     </select>
@@ -87,9 +82,374 @@
        if(!isset($_POST["choice"]))
        {
 
+
        }
        else
        {
+           if($_POST["zivotno"]=="kuce")
+           { $zivotno = "kuce";
+                if(isset($_POST["chipirano"]))
+                {
+                    if(isset($_POST["vakcinirano"]))
+                    {
+                        if($_POST["pol"]=="z")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and pol='z' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and pol='z' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and pol='z' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and pol='z' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where pol='z' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                        }
+                        else if ($_POST["pol"]=="m")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and pol='m' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and pol='m' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and pol='m' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and pol='m' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where pol='m' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+
+                        }
+                        else
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                        }
+                    }
+                    else
+                    {
+                        if($_POST["pol"]=="z")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and pol='z' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and pol='z' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and pol='z'  and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and pol='z'  and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where pol='z'  and chipirano='da' and vdomeno='ne'";
+                        }
+                        else if ($_POST["pol"]=="m")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and pol='m' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and pol='m' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and pol='m' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and pol='m' and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where pol='m' and chipirano='da' and vdomeno='ne'";
+
+                        }
+                        else
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where chipirano='da' and vdomeno='ne'";
+                        }
+                    }
+                }
+                else
+                {
+                    if(isset($_POST["vakcinirano"]))
+                    {
+                        if($_POST["pol"]=="z")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and pol='z' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and pol='z' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and pol='z' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and pol='z' and vakcinirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where pol='z' and vakcinirano='da' and vdomeno='ne'";
+                        }
+                        else if ($_POST["pol"]=="m")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and pol='m' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and pol='m' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and pol='m' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and pol='m' and vakcinirano='da'  vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where pol='m' and vakcinirano='da' and vdomeno='ne'";
+
+                        }
+                        else
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and vakcinirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where vakcinirano='da' and vdomeno='ne'";
+                        }
+                    }
+                    else
+                    {
+                        if($_POST["pol"]=="z")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and pol='z' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and pol='z' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and pol='z'  and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and pol='z'  and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where pol='z'  and vdomeno='ne'";
+                        }
+                        else if ($_POST["pol"]=="m")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and pol='m' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and pol='m' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and pol='m' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and pol='m' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where pol='m' and vdomeno='ne'";
+
+                        }
+                        else
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from kuce where vozrast='0' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from kuce where vozrast='1' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from kuce where vozrast='2' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from kuce where vozrast='3' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from kuce where vdomeno='ne'";
+                        }
+                    }
+
+                }
+           }
+           else
+           { $zivotno = "mace";
+               if(isset($_POST["chipirano"]))
+                {
+                    if(isset($_POST["vakcinirano"]))
+                    {
+                        if($_POST["pol"]=="z")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and pol='z' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and pol='z' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and pol='z' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and pol='z' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where pol='z' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                        }
+                        else if ($_POST["pol"]=="m")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and pol='m' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and pol='m' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and pol='m' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and pol='m' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where pol='m' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+
+                        }
+                        else
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where vakcinirano='da' and chipirano='da' and vdomeno='ne'";
+                        }
+                    }
+                    else
+                    {
+                        if($_POST["pol"]=="z")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and pol='z' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and pol='z' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and pol='z'  and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and pol='z'  and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where pol='z'  and chipirano='da' and vdomeno='ne'";
+                        }
+                        else if ($_POST["pol"]=="m")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and pol='m' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and pol='m' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and pol='m' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and pol='m' and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where pol='m' and chipirano='da' and vdomeno='ne'";
+
+                        }
+                        else
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and chipirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and chipirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where chipirano='da' and vdomeno='ne'";
+                        }
+                    }
+                }
+                else
+                {
+                    if(isset($_POST["vakcinirano"]))
+                    {
+                        if($_POST["pol"]=="z")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and pol='z' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and pol='z' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and pol='z' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and pol='z' and vakcinirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where pol='z' and vakcinirano='da' and vdomeno='ne'";
+                        }
+                        else if ($_POST["pol"]=="m")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and pol='m' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and pol='m' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and pol='m' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and pol='m' and vakcinirano='da'  vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where pol='m' and vakcinirano='da' and vdomeno='ne'";
+
+                        }
+                        else
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and vakcinirano='da' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and vakcinirano='da' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where vakcinirano='da' and vdomeno='ne'";
+                        }
+                    }
+                    else
+                    {
+                        if($_POST["pol"]=="z")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and pol='z' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and pol='z' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and pol='z'  and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and pol='z'  and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where pol='z'  and vdomeno='ne'";
+                        }
+                        else if ($_POST["pol"]=="m")
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and pol='m' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and pol='m' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and pol='m' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and pol='m' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where pol='m' and vdomeno='ne'";
+
+                        }
+                        else
+                        {
+                            if($_POST["vozrast"]=="0")
+                            $sql = "SELECT slika, ID from mace where vozrast='0' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="1")
+                            $sql = "SELECT slika, ID from mace where vozrast='1' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="2")
+                            $sql = "SELECT slika, ID from mace where vozrast='2' and vdomeno='ne'";
+                            if($_POST["vozrast"]=="3")
+                            $sql = "SELECT slika, ID from mace where vozrast='3' and vdomeno='ne'";
+                            else 
+                            $sql = "SELECT slika, ID from mace where vdomeno='ne'";
+                        }
+                    }
+
+                }
+           }
         
     
        }
