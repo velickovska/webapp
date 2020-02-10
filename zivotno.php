@@ -197,16 +197,83 @@
     }
     else if($user_username == $user)
     {
-
-    }
-    else
+$sql = "SELECT zainteresiran_ID from zainteresirani where zivotno_ID = '$zivotno_id' AND zivotno='$zivotno' and dava_zivotno_ID='$user'";
+if($result = mysqli_query($conn, $sql))
+{
+    $br = mysqli_num_rows($result);
+    if($br == 0)
     {
-        $sql = "SELECT * from zainteresirani where zainteresiran_ID='$user' AND zivotno_ID='$zivotno_id' AND zivotno='$zivotno'";
+        ?>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <br>
+                <p class="lead"> До сега нема заинтересирани за ова милениче. </p>
+
+            </div>
+            <div class="col-2">
+            </div>
+
+        </div>
+        <?php
+
+        }
+        else
+        {
+        while($row = mysqli_fetch_row($result))
+        {
+            $zainteresiran = $row[0];
+            $sql2 = "SELECT ime, prezime, profile_pic from user where username='$zainteresiran'";
+            $rez = mysqli_query($conn,$sql2);
+            $row2 = mysqli_fetch_row($rez);
+            $ime = $row2[0];
+            $prezime= $row2[1];
+            $slika_user = $row2[2];
+            ?>
+        <div class="row">
+            <br>
+            <div class="col-1 offset-2">
+
+                <img src="<?php echo $slika_user; ?>" style="max-width:100%">
+            </div>
+            <div class="col-4 align-self-center">
+                <p class="lead">
+                    <a href="profil.php?username=<?php echo $zainteresiran;?>"><?php echo $ime . " " . $prezime;?> </a>
+                </p>
+
+            </div>
+
+            <div class="col-3">
+
+                <form
+                    action="vdomi.php?stuff=<?php echo $user_username; ?>&ID=<?php echo $zivotno_id; ?>&zivotno=<?php echo $zivotno;?>"
+                    method="POST">
+                    <div class="form-group">
+                        <button class="btn-dark btn btn-lg btn-block " name="vdomi"> Одбери вдомувач
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="col-2">
+            </div>
+
+        </div>
+        <?php
+
+        }
+        }
+        }
+        }
+        else
+        {
+        $sql = "SELECT * from zainteresirani where zainteresiran_ID='$user' AND zivotno_ID='$zivotno_id' AND
+        zivotno='$zivotno'";
         if ($result = mysqli_query($conn, $sql)) {
-                $br = mysqli_num_rows($result);
-                if($br==0)
-                {
-?>
+        $br = mysqli_num_rows($result);
+        if($br==0)
+        {
+        ?>
         <div class="row">
             <div class="col-8 offset-2">
                 <br>
@@ -217,8 +284,9 @@
                         <button class="btn-dark btn-lg btn" style="width:100%" name="apliciraj"> Аплицирај </button>
 
                     </div>
-                    <div class="col-2">
-                    </div>
+                </form>
+                <div class="col-2">
+                </div>
 
             </div>
             <?php
