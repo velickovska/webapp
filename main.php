@@ -87,7 +87,7 @@
        else
        {
            if($_POST["zivotno"]=="kuce")
-           { $zivotno = "kuce";
+           { $zivotno="kuce";
                 if(isset($_POST["chipirano"]))
                 {
                     if(isset($_POST["vakcinirano"]))
@@ -269,7 +269,7 @@
                 }
            }
            else
-           { $zivotno = "mace";
+           { $zivotno= "mace";
                if(isset($_POST["chipirano"]))
                 {
                     if(isset($_POST["vakcinirano"]))
@@ -450,6 +450,7 @@
 
                 }
            }
+           include("prikaz.php");
         
     
        }
